@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "oneOf": [
+    {
+      "properties": {
+        "unit": {
+          "const": "Fahrenheit"
+        },
+        "value": {
+          "type": "number",
+          "minimum": 122,
+          "maximum": 302
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "properties": {
+        "unit": {
+          "const": "Celsius"
+        },
+        "value": {
+          "type": "number",
+          "minimum": 50,
+          "maximum": 150
+        }
+      },
+      "required": [
+        "unit",
+        "value"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

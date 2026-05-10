@@ -1,0 +1,18 @@
+[
+  {
+    "href": "http://example.org/robot1/state",
+    "contentType": "application/json",
+    "op": [
+      "readproperty",
+      "writeproperty"
+    ]
+  },
+  {
+    "href": "http://example.org/robot2/state",
+    "contentType": "application/json",
+    "op": [
+      "readproperty",
+      "writeproperty"
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "security": [
+    "basic_sc"
+  ],
+  "securityDefinitions": {
+    "basic_sc": {
+      "scheme": "basic",
+      "in": "header"
+    }
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "@context": "https://www.w3.org/2022/wot/td/v1.1",
+  "id": "urn:example:robot1",
+  "title": "Robot 1",
+  "description": "An industrial robot with an end effector that can grab objects",
+  "securityDefinitions": {
+    "nosec_sc": {
+      "scheme": "nosec"
+    }
+  },
+  "security": [
+    "nosec_sc"
+  ],
+  "base": "http://example.org/robot1/",
+  "properties": {
+    "location": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 180
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "z": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ],
+      "readOnly": true,
+      "observable": true,
+      "forms": [
+        {
+          "href": "location",
+          "contentType": "application/json",
+          "op": "readproperty"
+        },
+        {
+          "href": "location/observe",
+          "contentType": "application/json",
+          "op": "observeproperty",
+          "subprotocol": "longpoll"
+        }
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "enabled",
+        "disabled"
+      ],
+      "forms": [
+        {
+          "href": "state",
+          "contentType": "application/json",
+          "op": [
+            "readproperty",
+            "writeproperty"
+          ]
+        }
+      ]
+    },
+    "updateFrequency": {
+      "type": "number",
+      "unit": "Hz",
+      "enum": [
+        1,
+        10,
+        100
+      ],
+      "forms": [
+        {
+          "href": "updateFrequency",
+          "contentType": "application/json",
+          "op": [
+            "readproperty",
+            "writeproperty"
+          ]
+        }
+      ]
+    }
+  },
+  "actions": {
+    "goHome": {
+      "forms": [
+        {
+          "href": "actions/goHome",
+          "contentType": "application/json",
+          "op": "invokeaction"
+        }
+      ]
+    },
+    "goTo": {
+      "input": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 180
+          },
+          "y": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 90
+          },
+          "z": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "z"
+        ]
+      },
+      "forms": [
+        {
+          "href": "actions/goTo",
+          "contentType": "application/json",
+          "op": "invokeaction"
+        }
+      ]
+    },
+    "rotate": {
+      "input": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 360
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 180
+          },
+          "y": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 90
+          },
+          "z": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "z"
+        ]
+      },
+      "forms": [
+        {
+          "href": "actions/rotate",
+          "contentType": "application/json",
+          "op": "invokeaction"
+        }
+      ]
+    }
+  },
+  "events": {
+    "emergencyButton": {
+      "forms": [
+        {
+          "href": "events/emergencyButton",
+          "contentType": "application/json",
+          "op": "subscribeevent"
+        }
+      ]
+    },
+    "limitHit": {
+      "data": {
+        "type": "object",
+        "required": [
+          "axis",
+          "direction"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "axis": {
+                "type": "string",
+                "enum": [
+                  "x",
+                  "y"
+                ]
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "positive",
+                  "negative"
+                ]
+              }
+            }
+          },
+          {
+            "properties": {
+              "axis": {
+                "type": "string",
+                "const": "z"
+              },
+              "direction": {
+                "type": "string",
+                "const": "positive"
+              }
+            }
+          }
+        ]
+      },
+      "forms": [
+        {
+          "href": "events/limitHit",
+          "contentType": "application/json",
+          "op": "subscribeevent"
+        }
+      ]
+    }
+  },
+  "forms": [
+    {
+      "href": "properties",
+      "contentType": "application/json",
+      "op": "readallproperties"
+    }
+  ]
+}

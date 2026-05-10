@@ -1,0 +1,9 @@
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "lastKnownLocation": {
+    "x": 10,
+    "y": 20
+  },
+  "nickname": "Johnny"
+}

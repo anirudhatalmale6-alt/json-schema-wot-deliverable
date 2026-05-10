@@ -1,0 +1,12 @@
+{
+  "links": [
+    {
+      "href": "https://example.com/info",
+      "rel": "about"
+    },
+    {
+      "href": "https://example.com/td",
+      "rel": "canonical"
+    }
+  ]
+}

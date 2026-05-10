@@ -1,0 +1,12 @@
+[
+  {
+    "href": "http://example.org/robot1/actions/goHome",
+    "contentType": "application/json",
+    "op": "invokeaction"
+  },
+  {
+    "href": "http://example.org/robot2/actions/goTo",
+    "contentType": "application/json",
+    "op": "invokeaction"
+  }
+]
